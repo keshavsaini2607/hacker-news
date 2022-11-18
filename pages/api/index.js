@@ -9,7 +9,6 @@ const Instance = axios.create({
    timeoutErrorMessage: "Your request timed out: Front",
    headers: {
       Accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
    },
 });
 
