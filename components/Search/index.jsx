@@ -5,7 +5,7 @@ import { BiLinkExternal } from "react-icons/bi";
 import { useRouter } from "next/router";
 
 const Search = () => {
-    const router = useRouter();
+   const router = useRouter();
    const queryRef = useRef();
    const [searchResults, setSearchResults] = useState([]);
 
@@ -22,7 +22,7 @@ const Search = () => {
       let attached = true;
 
       if (attached && queryRef.current.value == "") {
-        console.log(queryRef.current.value)
+         console.log(queryRef.current.value);
          setSearchResults([]);
       }
 
@@ -33,7 +33,7 @@ const Search = () => {
 
    return (
       <div>
-         <span className="flex flex-col w-[60%] mx-auto">
+         <span className="flex flex-col w-[90%] md:w-[60%] mx-auto">
             <label className="text-white font-bold mb-1">Hack News</label>
             <input
                placeholder="Search hack news overs here..."
@@ -43,7 +43,7 @@ const Search = () => {
                ref={queryRef}
             />
          </span>
-         <div className="grid grid-cols-2 gap-4 mx-auto items-center mt-10 w-[80%]">
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto items-center mt-10 w-[90%] md:w-[80%]">
             {searchResults.map((news) => (
                <div
                   className="border-2 border-red-600 rounded-md min-w-[45%] overflow-hidden flex cursor-pointer"

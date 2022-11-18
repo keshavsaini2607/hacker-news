@@ -46,7 +46,7 @@ const Post = () => {
             <Head>
                <title>Loading...</title>
             </Head>
-            <div className="w-[70vw] h-[30vh] mx-auto flex justify-between">
+            <div className="w-[70vw] h-[30vh] mx-auto flex flex-col md:flex-row items-center md:items-start justify-between">
                <SkeletonTheme baseColor="#202020" highlightColor="#444">
                   <p>
                      <Skeleton height={200} width={200} />
@@ -109,17 +109,17 @@ const Post = () => {
          <Head>
             <title>{post?.title}</title>
          </Head>
-         <div className="w-[70%] mx-auto h-screen">
-            <div className="w-[100%] h-[30%] flex justify-between">
+         <div className="w-[100%] p-4 md:p-0 md:w-[70vw] mx-auto h-screen">
+            <div className="w-[100%] md:h-[30%] flex flex-col md:flex-row items-center md:items-start justify-between">
                <Image
-                  src="/assets/hacker.jpeg"
+                  src="/assets/hacker.png"
                   alt="hacker"
                   width={150}
                   height={150}
-                  className="w-[20%] h-auto"
+                  className="w-[70%] md:w-[25%] h-auto"
                />
-               <div className="flex flex-col items-end">
-                  <span className="text-3xl text-gray-50 text-end">
+               <div className="flex flex-col items-center md:items-end">
+                  <span className="text-xl md:text-3xl text-gray-50 text-center md:text-end">
                      {post?.title}
                   </span>
                   <span className="text-gray-200">Author: {post?.author}</span>
@@ -131,20 +131,17 @@ const Post = () => {
                   </a>
                </div>
             </div>
-            <div className="mt-10">
-               <span className="text-3xl text-gray-50">
+            <div className="mt-10 w-[100%] overflow-auto">
+               <span className="text-xl md:text-3xl text-gray-50">
                   Comments({post?.children?.length})
                </span>
-               <div className="mt-10">
+               <div className="mt-10 max-w-[100%]">
                   {post?.children?.map((comment) => (
-                     <>
+                     <div key={comment?.id}>
                         {comment?.author && (
-                           <CommentBody
-                              key={comment?.id}
-                              commentData={comment}
-                           />
+                           <CommentBody commentData={comment} />
                         )}
-                     </>
+                     </div>
                   ))}
                </div>
             </div>
