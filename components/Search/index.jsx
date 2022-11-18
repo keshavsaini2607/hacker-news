@@ -2,9 +2,10 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { searchAPI } from "../../pages/api/search";
 import { BiLinkExternal } from "react-icons/bi";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Search = () => {
+    const router = useRouter();
    const queryRef = useRef();
    const [searchResults, setSearchResults] = useState([]);
 
@@ -45,19 +46,21 @@ const Search = () => {
          <div className="grid grid-cols-2 gap-4 mx-auto items-center mt-10 w-[80%]">
             {searchResults.map((news) => (
                <div
-                  className="border-2 border-red-600 rounded-md min-w-[45%] overflow-hidden flex"
-                  key={news.objectId}
+                  className="border-2 border-red-600 rounded-md min-w-[45%] overflow-hidden flex cursor-pointer"
+                  key={news.objectID}
                   data-aos="zoom-in"
+                  onClick={() => router.push(`/post/${news.objectID}`)}
                >
                   <Image
                      src="/assets/hacker.jpeg"
                      alt="hack"
                      width={100}
                      height={80}
+                     className="w-[30%]"
                   />
                   <div className="flex flex-col p-4 w-[100%]">
                      <span className="flex flex-col">
-                        <h1 className="text-gray-50 text-2xl truncate w-[80%]">
+                        <h1 className="text-gray-50 text-2xl truncate w-[70%]">
                            {news.title}
                         </h1>
                         <p className="text-gray-200">By--{news?.author}</p>
