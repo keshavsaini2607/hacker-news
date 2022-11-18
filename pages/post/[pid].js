@@ -38,7 +38,7 @@ const Post = () => {
       return () => {
          attached = false;
       };
-   }, [pid, fetchPost]);
+   }, [fetchPost, pid]);
 
    if (loading) {
       return (
@@ -74,35 +74,7 @@ const Post = () => {
       );
    }
 
-   if (!loading && !post) {
-      return (
-         <Layout>
-            <Head>
-               <title>Error</title>
-            </Head>
-            <div className="w-[70%] mx-auto flex flex-col gap-4 items-center">
-               <span className="text-8xl italic font-semibold text-red-600">
-                  404
-               </span>
-               <h1 className="text-gray-50 text-2xl">
-                  Something went wrong please try again!
-               </h1>
-               <button
-                  className="bg-red-600 text-white px-6 py-2 rounded-md"
-                  onClick={fetchPost}
-               >
-                  Try Again
-               </button>
-               <span
-                  className="text-blue-600 cursor-pointer"
-                  onClick={() => router.replace("/")}
-               >
-                  Or Redirect To Home
-               </span>
-            </div>
-         </Layout>
-      );
-   }
+  
 
    return (
       <Layout>

@@ -36,7 +36,7 @@ const Search = () => {
          <span className="flex flex-col w-[90%] md:w-[60%] mx-auto">
             <label className="text-white font-bold mb-1">Hack News</label>
             <input
-               placeholder="Search hack news overs here..."
+               placeholder="Search hack news over here..."
                className="px-4 py-6 rounded-md w-[100%] outline-none border-2 focus:border-red-600 text-lg"
                name="query"
                onChange={(e) => search(e.target.value)}
