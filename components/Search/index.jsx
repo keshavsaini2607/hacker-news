@@ -19,16 +19,10 @@ const Search = () => {
    };
 
    useEffect(() => {
-      let attached = true;
-
-      if (attached && queryRef.current.value == "") {
+      if (queryRef.current.value == "") {
          console.log(queryRef.current.value);
          setSearchResults([]);
       }
-
-      return () => {
-         attached = false;
-      };
    }, [queryRef?.current?.value]);
 
    return (

@@ -30,14 +30,9 @@ const Post = () => {
    }, [pid]);
 
    useEffect(() => {
-      let attached = true;
-      if (attached && pid) {
+      if (pid) {
          fetchPost();
       }
-
-      return () => {
-         attached = false;
-      };
    }, [fetchPost, pid]);
 
    if (loading) {
@@ -73,8 +68,6 @@ const Post = () => {
          </Layout>
       );
    }
-
-  
 
    return (
       <Layout>
