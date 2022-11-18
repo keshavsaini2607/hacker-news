@@ -1,10 +1,11 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { searchAPI } from "../../pages/api/search";
 import { BiLinkExternal } from "react-icons/bi";
 import Link from "next/link";
 
 const Search = () => {
+   const queryRef = useRef();
    const [searchResults, setSearchResults] = useState([]);
 
    const search = async (query) => {
@@ -16,7 +17,18 @@ const Search = () => {
       }
    };
 
-   console.log({ searchResults });
+   useEffect(() => {
+      let attached = true;
+
+      if (attached && queryRef.current.value == "") {
+        console.log(queryRef.current.value)
+         setSearchResults([]);
+      }
+
+      return () => {
+         attached = false;
+      };
+   }, [queryRef?.current?.value]);
 
    return (
       <div>
@@ -27,6 +39,7 @@ const Search = () => {
                className="px-4 py-6 rounded-md w-[100%] outline-none border-2 focus:border-red-600 text-lg"
                name="query"
                onChange={(e) => search(e.target.value)}
+               ref={queryRef}
             />
          </span>
          <div className="grid grid-cols-2 gap-4 mx-auto items-center mt-10 w-[80%]">
@@ -34,6 +47,7 @@ const Search = () => {
                <div
                   className="border-2 border-red-600 rounded-md min-w-[45%] overflow-hidden flex"
                   key={news.objectId}
+                  data-aos="zoom-in"
                >
                   <Image
                      src="/assets/hacker.jpeg"
